@@ -1,0 +1,2830 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SD | Signature Dining</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:#f8f5ef;
+    color:#1d1d1b;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root{
+    --dark:#151713;
+    --dark2:#20231d;
+    --gold:#c49a5a;
+    --gold-light:#dfbd82;
+    --cream:#f8f5ef;
+    --white:#ffffff;
+    --muted:#77756e;
+    --border:#e7e1d7;
+}
+
+/* =========================
+   ANNOUNCEMENT
+========================= */
+
+.announcement{
+    background:var(--dark);
+    color:#eee;
+    text-align:center;
+    padding:9px;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+.announcement span{
+    color:var(--gold-light);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:999;
+    height:82px;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-mark{
+    width:46px;
+    height:46px;
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    font-weight:bold;
+    color:var(--gold);
+    transform:rotate(-5deg);
+}
+
+.logo-text{
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    font-weight:700;
+}
+
+.logo-text small{
+    display:block;
+    font-family:"Inter",sans-serif;
+    font-size:8px;
+    letter-spacing:3px;
+    color:var(--muted);
+    text-transform:uppercase;
+}
+
+.nav-links{
+    display:flex;
+    gap:32px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-size:13px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--gold);
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.reserve-btn{
+    background:var(--dark);
+    color:white;
+    border:none;
+    padding:12px 20px;
+    letter-spacing:1px;
+    font-size:12px;
+    transition:.3s;
+}
+
+.reserve-btn:hover{
+    background:var(--gold);
+}
+
+.cart-btn{
+    background:none;
+    border:1px solid var(--border);
+    width:42px;
+    height:42px;
+    position:relative;
+}
+
+.cart-number{
+    position:absolute;
+    right:-5px;
+    top:-5px;
+    width:18px;
+    height:18px;
+    background:var(--gold);
+    color:white;
+    border-radius:50%;
+    font-size:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:calc(100vh - 115px);
+    background:
+    linear-gradient(
+        90deg,
+        rgba(9,10,8,.82),
+        rgba(9,10,8,.38)
+    ),
+    url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=2000&q=90");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+
+.hero-content{
+    width:88%;
+    max-width:1300px;
+    margin:auto;
+    color:white;
+}
+
+.hero-label{
+    color:var(--gold-light);
+    letter-spacing:5px;
+    font-size:11px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(65px,9vw,120px);
+    line-height:.83;
+    font-weight:600;
+    max-width:800px;
+    margin-bottom:30px;
+}
+
+.hero h1 span{
+    color:var(--gold-light);
+    font-style:italic;
+}
+
+.hero-description{
+    max-width:530px;
+    color:#eee;
+    line-height:1.8;
+    font-size:15px;
+    margin-bottom:35px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:14px;
+}
+
+.gold-button{
+    background:var(--gold);
+    color:white;
+    border:none;
+    padding:15px 27px;
+    font-size:12px;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+.gold-button:hover{
+    background:#a77d42;
+    transform:translateY(-2px);
+}
+
+.outline-button{
+    background:transparent;
+    color:white;
+    border:1px solid rgba(255,255,255,.6);
+    padding:14px 27px;
+    font-size:12px;
+}
+
+.hero-bottom{
+    position:absolute;
+    bottom:30px;
+    right:6%;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#ddd;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+.scroll-line{
+    width:55px;
+    height:1px;
+    background:var(--gold);
+}
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+.section{
+    padding:100px 6%;
+}
+
+.section-label{
+    color:var(--gold);
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.section-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:54px;
+    line-height:1;
+    margin:15px 0 20px;
+}
+
+.section-description{
+    color:var(--muted);
+    max-width:600px;
+    line-height:1.8;
+    font-size:14px;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+    max-width:1250px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.intro-images{
+    position:relative;
+    height:550px;
+}
+
+.intro-main{
+    width:78%;
+    height:470px;
+    object-fit:cover;
+}
+
+.intro-small{
+    position:absolute;
+    right:0;
+    bottom:0;
+    width:43%;
+    height:250px;
+    object-fit:cover;
+    border:8px solid var(--cream);
+}
+
+.intro-content p{
+    color:var(--muted);
+    line-height:1.9;
+    margin:20px 0;
+}
+
+.signature{
+    margin-top:30px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:29px;
+    font-style:italic;
+    color:#444;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+    background:var(--dark);
+    color:white;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    text-align:center;
+}
+
+.stat{
+    padding:45px 20px;
+    border-right:1px solid #333;
+}
+
+.stat:last-child{
+    border-right:0;
+}
+
+.stat strong{
+    font-family:"Cormorant Garamond",serif;
+    font-size:48px;
+    color:var(--gold-light);
+}
+
+.stat span{
+    display:block;
+    color:#aaa;
+    font-size:11px;
+    letter-spacing:2px;
+    margin-top:7px;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu-section{
+    background:#fff;
+}
+
+.menu-header{
+    max-width:1250px;
+    margin:auto;
+    text-align:center;
+}
+
+.menu-header .section-description{
+    margin:auto;
+}
+
+.category-bar{
+    max-width:1250px;
+    margin:45px auto 35px;
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.category{
+    border:1px solid var(--border);
+    background:white;
+    padding:11px 20px;
+    font-size:11px;
+    letter-spacing:1px;
+    color:#555;
+    transition:.3s;
+}
+
+.category:hover,
+.category.active{
+    background:var(--dark);
+    color:white;
+    border-color:var(--dark);
+}
+
+.search-wrapper{
+    max-width:1250px;
+    margin:0 auto 35px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.search{
+    width:280px;
+    padding:13px 17px;
+    border:1px solid var(--border);
+    outline:none;
+    background:#fafafa;
+    font-size:12px;
+}
+
+.search:focus{
+    border-color:var(--gold);
+}
+
+.menu-grid{
+    max-width:1250px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+}
+
+.food-card{
+    background:#fff;
+    border:1px solid #eee;
+    transition:.35s;
+    overflow:hidden;
+}
+
+.food-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 18px 45px rgba(0,0,0,.09);
+}
+
+.food-image{
+    height:245px;
+    position:relative;
+    overflow:hidden;
+}
+
+.food-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.food-card:hover .food-image img{
+    transform:scale(1.07);
+}
+
+.food-tag{
+    position:absolute;
+    left:12px;
+    top:12px;
+    background:var(--dark);
+    color:white;
+    padding:7px 10px;
+    font-size:9px;
+    letter-spacing:1px;
+}
+
+.heart{
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:white;
+    font-size:17px;
+}
+
+.heart.liked{
+    color:#c45a5a;
+}
+
+.food-info{
+    padding:19px;
+}
+
+.food-info h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:24px;
+    margin-bottom:6px;
+}
+
+.food-description{
+    font-size:12px;
+    color:#85837d;
+    line-height:1.6;
+    min-height:39px;
+}
+
+.food-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px;
+}
+
+.food-price{
+    font-size:17px;
+    font-weight:600;
+}
+
+.food-rating{
+    font-size:11px;
+    color:#a77d42;
+}
+
+.add-button{
+    width:100%;
+    margin-top:14px;
+    padding:11px;
+    border:1px solid var(--dark);
+    background:white;
+    color:var(--dark);
+    font-size:11px;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+.add-button:hover{
+    background:var(--dark);
+    color:white;
+}
+
+/* =========================
+   FEATURED
+========================= */
+
+.featured{
+    background:var(--cream);
+}
+
+.featured-inner{
+    max-width:1250px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    align-items:center;
+}
+
+.featured-image{
+    height:560px;
+    overflow:hidden;
+}
+
+.featured-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.featured-content{
+    padding:65px;
+}
+
+.featured-content h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:58px;
+    line-height:.95;
+    margin:18px 0;
+}
+
+.featured-content p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.feature-price{
+    font-family:"Cormorant Garamond",serif;
+    font-size:35px;
+    color:var(--gold);
+    margin-bottom:25px;
+}
+
+/* =========================
+   EXPERIENCE
+========================= */
+
+.experience{
+    background:
+    linear-gradient(
+        rgba(20,22,18,.83),
+        rgba(20,22,18,.83)
+    ),
+    url("https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1800&q=85");
+    background-size:cover;
+    background-position:center;
+    color:white;
+    text-align:center;
+}
+
+.experience-content{
+    max-width:750px;
+    margin:auto;
+}
+
+.experience h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:58px;
+    margin:18px 0;
+}
+
+.experience p{
+    color:#ddd;
+    line-height:1.8;
+    font-size:14px;
+}
+
+/* =========================
+   EXPERIENCE CARDS
+========================= */
+
+.experience-cards{
+    max-width:1100px;
+    margin:50px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.experience-card{
+    padding:35px 25px;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.05);
+}
+
+.experience-card .icon{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.experience-card h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:27px;
+    margin-bottom:10px;
+}
+
+.experience-card p{
+    font-size:12px;
+    color:#bbb;
+}
+
+/* =========================
+   TESTIMONIALS
+========================= */
+
+.testimonials{
+    background:#fff;
+    text-align:center;
+}
+
+.testimonial-grid{
+    max-width:1100px;
+    margin:50px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.testimonial{
+    padding:35px 25px;
+    border:1px solid var(--border);
+}
+
+.testimonial .stars{
+    color:var(--gold);
+    margin-bottom:18px;
+}
+
+.testimonial p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:13px;
+    font-style:italic;
+}
+
+.testimonial strong{
+    display:block;
+    margin-top:20px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:21px;
+}
+
+/* =========================
+   RESERVATION
+========================= */
+
+.reservation{
+    background:var(--cream);
+}
+
+.reservation-container{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+}
+
+.reservation-info p{
+    color:var(--muted);
+    line-height:1.8;
+    margin:20px 0;
+}
+
+.contact-info{
+    margin-top:25px;
+}
+
+.contact-info div{
+    margin:12px 0;
+    color:#555;
+    font-size:13px;
+}
+
+.reservation-form{
+    background:white;
+    padding:35px;
+    box-shadow:0 15px 45px rgba(0,0,0,.08);
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+    font-size:11px;
+    letter-spacing:1px;
+    margin-bottom:7px;
+    color:#555;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:13px;
+    border:1px solid var(--border);
+    outline:none;
+    background:white;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border-color:var(--gold);
+}
+
+.submit-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:var(--dark);
+    color:white;
+    font-size:12px;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+.submit-btn:hover{
+    background:var(--gold);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    background:var(--dark);
+    color:white;
+    padding:65px 6% 25px;
+}
+
+.footer-grid{
+    max-width:1250px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:27px;
+    margin-bottom:15px;
+}
+
+.footer p{
+    color:#aaa;
+    font-size:12px;
+    line-height:1.8;
+}
+
+.footer-links{
+    list-style:none;
+}
+
+.footer-links li{
+    margin:10px 0;
+}
+
+.footer-links a{
+    text-decoration:none;
+    color:#aaa;
+    font-size:12px;
+}
+
+.footer-links a:hover{
+    color:var(--gold-light);
+}
+
+.footer-bottom{
+    max-width:1250px;
+    margin:45px auto 0;
+    padding-top:20px;
+    border-top:1px solid #333;
+    text-align:center;
+    color:#777;
+    font-size:11px;
+}
+
+/* =========================
+   CART
+========================= */
+
+.cart-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:1500;
+}
+
+.cart-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.cart-drawer{
+    position:fixed;
+    top:0;
+    right:-430px;
+    width:400px;
+    max-width:90%;
+    height:100vh;
+    background:white;
+    z-index:1600;
+    transition:.35s;
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+}
+
+.cart-drawer.show{
+    right:0;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-header h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:30px;
+}
+
+.close-cart{
+    border:none;
+    background:none;
+    font-size:25px;
+}
+
+.cart-items{
+    flex:1;
+    overflow-y:auto;
+    padding:20px 0;
+}
+
+.empty-cart{
+    text-align:center;
+    color:var(--muted);
+    padding:50px 10px;
+    font-size:13px;
+}
+
+.cart-item{
+    display:grid;
+    grid-template-columns:65px 1fr auto;
+    gap:12px;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-item img{
+    width:65px;
+    height:65px;
+    object-fit:cover;
+}
+
+.cart-item h4{
+    font-family:"Cormorant Garamond",serif;
+    font-size:19px;
+}
+
+.cart-item p{
+    color:var(--gold);
+    font-size:12px;
+    margin-top:4px;
+}
+
+.quantity{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:7px;
+}
+
+.quantity button{
+    width:22px;
+    height:22px;
+    border:1px solid var(--border);
+    background:white;
+}
+
+.remove-item{
+    border:none;
+    background:none;
+    color:#999;
+    font-size:11px;
+}
+
+.cart-total{
+    border-top:1px solid var(--border);
+    padding-top:20px;
+}
+
+.total-row{
+    display:flex;
+    justify-content:space-between;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+.checkout-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    background:var(--dark);
+    color:white;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,30px);
+    background:var(--dark);
+    color:white;
+    padding:13px 20px;
+    font-size:12px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:3000;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1050px){
+
+    .nav-links{
+        gap:15px;
+    }
+
+    .menu-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .intro{
+        gap:40px;
+    }
+
+    .featured-content{
+        padding:40px;
+    }
+
+    .footer-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:800px){
+
+    .navbar{
+        padding:0 4%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        min-height:75vh;
+    }
+
+    .hero h1{
+        font-size:70px;
+    }
+
+    .section{
+        padding:70px 5%;
+    }
+
+    .intro,
+    .featured-inner,
+    .reservation-container{
+        grid-template-columns:1fr;
+    }
+
+    .intro-images{
+        height:450px;
+    }
+
+    .featured-image{
+        height:400px;
+    }
+
+    .featured-content{
+        padding:45px 10px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stat:nth-child(2){
+        border-right:0;
+    }
+
+    .stat{
+        border-bottom:1px solid #333;
+    }
+
+    .menu-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .experience-cards,
+    .testimonial-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:550px){
+
+    .announcement{
+        font-size:10px;
+    }
+
+    .logo-text{
+        font-size:21px;
+    }
+
+    .reserve-btn{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:58px;
+    }
+
+    .hero-description{
+        font-size:13px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        width:180px;
+    }
+
+    .section-title{
+        font-size:43px;
+    }
+
+    .intro-images{
+        height:390px;
+    }
+
+    .intro-main{
+        height:350px;
+    }
+
+    .intro-small{
+        height:180px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat strong{
+        font-size:38px;
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr;
+    }
+
+    .search-wrapper{
+        justify-content:center;
+    }
+
+    .search{
+        width:100%;
+    }
+
+    .featured-content h2,
+    .experience h2{
+        font-size:45px;
+    }
+
+    .reservation-form{
+        padding:25px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ANNOUNCEMENT -->
+
+<div class="announcement">
+    ✦ <span>Complimentary dessert</span> on orders above ₹999
+</div>
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-mark">
+            SD
+        </div>
+
+        <div class="logo-text">
+            Signature Dining
+            <small>Fine Food • Fine Moments</small>
+        </div>
+
+    </div>
+
+    <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#story">Our Story</a>
+        <a href="#menu">Menu</a>
+        <a href="#experience">Experience</a>
+        <a href="#reservation">Reservation</a>
+    </div>
+
+    <div class="nav-right">
+
+        <button class="reserve-btn" onclick="scrollToReservation()">
+            RESERVE TABLE
+        </button>
+
+        <button class="cart-btn" onclick="openCart()">
+            🛒
+            <span class="cart-number" id="cartCount">0</span>
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            WELCOME TO SD SIGNATURE DINING
+        </div>
+
+        <h1>
+            Where food<br>
+            becomes an <span>experience.</span>
+        </h1>
+
+        <p class="hero-description">
+            Discover beautifully crafted dishes, warm hospitality
+            and unforgettable moments at SD Signature Dining.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="gold-button"
+                    onclick="document.getElementById('menu').scrollIntoView()">
+                EXPLORE MENU
+            </button>
+
+            <button class="outline-button"
+                    onclick="scrollToReservation()">
+                BOOK A TABLE
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="hero-bottom">
+        SCROLL TO DISCOVER
+        <div class="scroll-line"></div>
+    </div>
+
+</section>
+
+
+<!-- OUR STORY -->
+
+<section class="section" id="story">
+
+    <div class="intro">
+
+        <div class="intro-images">
+
+            <img
+                class="intro-main"
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85"
+                alt="Restaurant interior"
+            >
+
+            <img
+                class="intro-small"
+                src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=85"
+                alt="Fine dining"
+            >
+
+        </div>
+
+        <div class="intro-content">
+
+            <div class="section-label">
+                OUR STORY
+            </div>
+
+            <h2 class="section-title">
+                Simple ingredients.<br>
+                Extraordinary moments.
+            </h2>
+
+            <p>
+                SD Signature Dining brings together traditional flavours,
+                modern presentation and a warm dining atmosphere.
+            </p>
+
+            <p>
+                From comforting Indian classics to international favourites,
+                every dish is prepared with care and served with passion.
+            </p>
+
+            <div class="signature">
+                Made with passion — served with love.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+    <div class="stat">
+        <strong>30+</strong>
+        <span>SIGNATURE DISHES</span>
+    </div>
+
+    <div class="stat">
+        <strong>4.9</strong>
+        <span>GUEST RATING</span>
+    </div>
+
+    <div class="stat">
+        <strong>12K+</strong>
+        <span>HAPPY GUESTS</span>
+    </div>
+
+    <div class="stat">
+        <strong>7</strong>
+        <span>YEARS OF PASSION</span>
+    </div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section class="section menu-section" id="menu">
+
+    <div class="menu-header">
+
+        <div class="section-label">
+            OUR MENU
+        </div>
+
+        <h2 class="section-title">
+            Crafted for every craving.
+        </h2>
+
+        <p class="section-description">
+            Explore our selection of favourites, from comforting Indian
+            classics to pizzas, pasta, burgers and delightful desserts.
+        </p>
+
+    </div>
+
+
+    <!-- CATEGORY FILTER -->
+
+    <div class="category-bar">
+
+        <button class="category active"
+                onclick="filterMenu('all',this)">
+            ALL
+        </button>
+
+        <button class="category"
+                onclick="filterMenu('starters',this)">
+            STARTERS
+        </button>
+
+        <button class="category"
+                onclick="filterMenu('indian',this)">
+            INDIAN
+        </button>
+
+        <button class="category"
+                onclick="filterMenu('pizza',this)">
+            PIZZA
+        </button>
+
+        <button class="category"
+                onclick="filterMenu('pasta',this)">
+            PASTA
+        </button>
+
+        <button class="category"
+                onclick="filterMenu('burgers',this)">
+            BURGERS
+        </button>
+
+        <button class="category"
+                onclick="filterMenu('desserts',this)">
+            DESSERTS
+        </button>
+
+        <button class="category"
+                onclick="filterMenu('drinks',this)">
+            DRINKS
+        </button>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-wrapper">
+
+        <input
+            type="text"
+            class="search"
+            id="searchInput"
+            placeholder="Search dishes..."
+            oninput="searchMenu()"
+        >
+
+    </div>
+
+
+    <!-- MENU GRID -->
+
+    <div class="menu-grid" id="menuGrid"></div>
+
+</section>
+
+
+<!-- FEATURED DISH -->
+
+<section class="section featured">
+
+    <div class="featured-inner">
+
+        <div class="featured-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=1200&q=85"
+                alt="Chicken Biryani"
+            >
+
+        </div>
+
+        <div class="featured-content">
+
+            <div class="section-label">
+                CHEF'S SIGNATURE
+            </div>
+
+            <h2>
+                SD Royal<br>
+                Chicken Biryani
+            </h2>
+
+            <p>
+                Fragrant basmati rice, tender chicken, aromatic spices
+                and traditional slow-cooking techniques come together
+                in our signature biryani.
+            </p>
+
+            <div class="feature-price">
+                ₹399
+            </div>
+
+            <button
+                class="gold-button"
+                onclick="addToCart(6)"
+            >
+                ADD TO ORDER
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+
+<section class="section experience" id="experience">
+
+    <div class="experience-content">
+
+        <div class="section-label">
+            THE SD EXPERIENCE
+        </div>
+
+        <h2>
+            More than just a meal.
+        </h2>
+
+        <p>
+            At SD, we believe dining should create memories.
+            Enjoy carefully prepared food, beautiful surroundings
+            and warm service.
+        </p>
+
+    </div>
+
+
+    <div class="experience-cards">
+
+        <div class="experience-card">
+
+            <div class="icon">🍽️</div>
+
+            <h3>
+                Crafted Cuisine
+            </h3>
+
+            <p>
+                Carefully prepared dishes using quality ingredients.
+            </p>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <div class="icon">✨</div>
+
+            <h3>
+                Elegant Ambience
+            </h3>
+
+            <p>
+                A comfortable atmosphere for family, friends and celebrations.
+            </p>
+
+        </div>
+
+
+        <div class="experience-card">
+
+            <div class="icon">❤️</div>
+
+            <h3>
+                Warm Hospitality
+            </h3>
+
+            <p>
+                Friendly service that makes every guest feel welcome.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TESTIMONIALS -->
+
+<section class="section testimonials">
+
+    <div class="section-label">
+        GUEST STORIES
+    </div>
+
+    <h2 class="section-title">
+        Loved by our guests.
+    </h2>
+
+    <div class="testimonial-grid">
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "The food was delicious and the ambience was beautiful.
+                Definitely a place I would visit again."
+            </p>
+
+            <strong>
+                — Ananya
+            </strong>
+
+        </div>
+
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "The biryani was amazing and the service was really warm.
+                Perfect place for a family dinner."
+            </p>
+
+            <strong>
+                — Rahul
+            </strong>
+
+        </div>
+
+
+        <div class="testimonial">
+
+            <div class="stars">
+                ★★★★★
+            </div>
+
+            <p>
+                "Beautiful restaurant, great presentation and
+                delicious desserts."
+            </p>
+
+            <strong>
+                — Priya
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RESERVATION -->
+
+<section class="section reservation" id="reservation">
+
+    <div class="reservation-container">
+
+        <div class="reservation-info">
+
+            <div class="section-label">
+                RESERVATIONS
+            </div>
+
+            <h2 class="section-title">
+                Your table<br>
+                is waiting.
+            </h2>
+
+            <p>
+                Planning a dinner, celebration or special evening?
+                Reserve your table and enjoy the SD experience.
+            </p>
+
+            <div class="contact-info">
+
+                <div>
+                    📍 12 Signature Avenue, City Centre
+                </div>
+
+                <div>
+                    📞 +91 98765 43210
+                </div>
+
+                <div>
+                    ✉️ hello@sdrestaurant.com
+                </div>
+
+                <div>
+                    🕐 11:00 AM — 11:00 PM
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <form class="reservation-form"
+              onsubmit="makeReservation(event)">
+
+            <div class="form-group">
+
+                <label>
+                    YOUR NAME
+                </label>
+
+                <input
+                    type="text"
+                    id="guestName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    PHONE NUMBER
+                </label>
+
+                <input
+                    type="tel"
+                    id="guestPhone"
+                    placeholder="Enter phone number"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    DATE
+                </label>
+
+                <input
+                    type="date"
+                    id="bookingDate"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    TIME
+                </label>
+
+                <select id="bookingTime" required>
+
+                    <option value="">
+                        Select time
+                    </option>
+
+                    <option>12:00 PM</option>
+                    <option>1:00 PM</option>
+                    <option>2:00 PM</option>
+                    <option>6:00 PM</option>
+                    <option>7:00 PM</option>
+                    <option>8:00 PM</option>
+                    <option>9:00 PM</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    GUESTS
+                </label>
+
+                <select id="guestCount" required>
+
+                    <option value="">
+                        Number of guests
+                    </option>
+
+                    <option>1 Guest</option>
+                    <option>2 Guests</option>
+                    <option>3 Guests</option>
+                    <option>4 Guests</option>
+                    <option>5 Guests</option>
+                    <option>6+ Guests</option>
+
+                </select>
+
+            </div>
+
+
+            <button class="submit-btn" type="submit">
+                CONFIRM RESERVATION
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+        <div>
+
+            <h3>
+                SD Signature Dining
+            </h3>
+
+            <p>
+                Where food becomes an experience.
+                Beautiful food, warm hospitality and
+                unforgettable moments.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Explore
+            </h3>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+
+                <li>
+                    <a href="#story">Our Story</a>
+                </li>
+
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+
+                <li>
+                    <a href="#reservation">Reservation</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Menu
+            </h3>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="#menu">Indian</a>
+                </li>
+
+                <li>
+                    <a href="#menu">Pizza</a>
+                </li>
+
+                <li>
+                    <a href="#menu">Pasta</a>
+                </li>
+
+                <li>
+                    <a href="#menu">Desserts</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Visit Us
+            </h3>
+
+            <p>
+                12 Signature Avenue<br>
+                City Centre<br>
+                Andhra Pradesh
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+        © 2026 SD Signature Dining. All rights reserved.
+    </div>
+
+</footer>
+
+
+<!-- CART OVERLAY -->
+
+<div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="closeCart()">
+</div>
+
+
+<!-- CART -->
+
+<div
+    class="cart-drawer"
+    id="cartDrawer">
+
+    <div class="cart-header">
+
+        <h2>
+            Your Order
+        </h2>
+
+        <button
+            class="close-cart"
+            onclick="closeCart()">
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        class="cart-items"
+        id="cartItems">
+
+        <div class="empty-cart">
+            Your cart is empty.
+        </div>
+
+    </div>
+
+
+    <div class="cart-total">
+
+        <div class="total-row">
+
+            <span>
+                Total
+            </span>
+
+            <span id="cartTotal">
+                ₹0
+            </span>
+
+        </div>
+
+        <button
+            class="checkout-btn"
+            onclick="checkout()">
+            PROCEED TO CHECKOUT
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<script>
+
+/* =========================
+   MENU DATA
+========================= */
+
+const menuItems = [
+
+{
+    id:1,
+    category:"starters",
+    name:"Crispy Chicken",
+    description:"Golden crispy chicken with our signature sauce.",
+    price:249,
+    rating:"4.8",
+    tag:"POPULAR",
+    image:"https://images.unsplash.com/photo-1562967916-eb82221dfb92?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:2,
+    category:"starters",
+    name:"Paneer Tikka",
+    description:"Char-grilled paneer with peppers and Indian spices.",
+    price:229,
+    rating:"4.7",
+    tag:"VEG",
+    image:"https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:3,
+    category:"starters",
+    name:"Bruschetta",
+    description:"Toasted bread topped with tomato, herbs and olive oil.",
+    price:199,
+    rating:"4.6",
+    tag:"",
+    image:"https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:4,
+    category:"starters",
+    name:"Loaded Nachos",
+    description:"Crunchy nachos with cheese, salsa and jalapeños.",
+    price:219,
+    rating:"4.7",
+    tag:"SHARE",
+    image:"https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:5,
+    category:"starters",
+    name:"Classic Fries",
+    description:"Crispy golden fries with our house seasoning.",
+    price:149,
+    rating:"4.5",
+    tag:"",
+    image:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:6,
+    category:"indian",
+    name:"SD Royal Chicken Biryani",
+    description:"Aromatic basmati rice with tender chicken and spices.",
+    price:399,
+    rating:"4.9",
+    tag:"SIGNATURE",
+    image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:7,
+    category:"indian",
+    name:"Butter Chicken",
+    description:"Tender chicken in a rich creamy tomato gravy.",
+    price:349,
+    rating:"4.8",
+    tag:"BESTSELLER",
+    image:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:8,
+    category:"indian",
+    name:"Paneer Butter Masala",
+    description:"Soft paneer cooked in creamy tomato masala.",
+    price:299,
+    rating:"4.7",
+    tag:"VEG",
+    image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:9,
+    category:"indian",
+    name:"Dal Makhani",
+    description:"Slow-cooked black lentils with butter and cream.",
+    price:249,
+    rating:"4.7",
+    tag:"VEG",
+    image:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:10,
+    category:"indian",
+    name:"Chicken Tandoori",
+    description:"Tandoori chicken marinated with aromatic spices.",
+    price:329,
+    rating:"4.8",
+    tag:"CHEF PICK",
+    image:"https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:11,
+    category:"indian",
+    name:"Garlic Naan",
+    description:"Soft naan topped with garlic and fresh coriander.",
+    price:89,
+    rating:"4.6",
+    tag:"VEG",
+    image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:12,
+    category:"pizza",
+    name:"Margherita Pizza",
+    description:"Classic pizza with tomato, mozzarella and basil.",
+    price:299,
+    rating:"4.7",
+    tag:"CLASSIC",
+    image:"https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:13,
+    category:"pizza",
+    name:"Pepperoni Pizza",
+    description:"Loaded with pepperoni and melted mozzarella.",
+    price:399,
+    rating:"4.8",
+    tag:"POPULAR",
+    image:"https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:14,
+    category:"pizza",
+    name:"Four Cheese Pizza",
+    description:"A rich blend of four creamy cheeses.",
+    price:449,
+    rating:"4.7",
+    tag:"CHEESY",
+    image:"https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:15,
+    category:"pasta",
+    name:"Truffle Cream Pasta",
+    description:"Creamy pasta finished with aromatic truffle oil.",
+    price:399,
+    rating:"4.9",
+    tag:"PREMIUM",
+    image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:16,
+    category:"pasta",
+    name:"Spaghetti Bolognese",
+    description:"Spaghetti with rich slow-cooked tomato meat sauce.",
+    price:349,
+    rating:"4.7",
+    tag:"",
+    image:"https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:17,
+    category:"pasta",
+    name:"Penne Arrabbiata",
+    description:"Penne pasta in a spicy tomato and herb sauce.",
+    price:299,
+    rating:"4.6",
+    tag:"SPICY",
+    image:"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:18,
+    category:"pasta",
+    name:"Creamy Mushroom Pasta",
+    description:"Creamy mushroom pasta with parmesan and herbs.",
+    price:329,
+    rating:"4.8",
+    tag:"VEG",
+    image:"https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:19,
+    category:"burgers",
+    name:"Classic Beef Burger",
+    description:"Juicy beef patty with lettuce, cheese and sauce.",
+    price:329,
+    rating:"4.8",
+    tag:"POPULAR",
+    image:"https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:20,
+    category:"burgers",
+    name:"Crispy Chicken Burger",
+    description:"Crunchy chicken fillet with fresh lettuce and sauce.",
+    price:299,
+    rating:"4.8",
+    tag:"BESTSELLER",
+    image:"https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:21,
+    category:"burgers",
+    name:"Veggie Burger",
+    description:"Crispy vegetable patty with fresh salad and cheese.",
+    price:249,
+    rating:"4.6",
+    tag:"VEG",
+    image:"https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:22,
+    category:"desserts",
+    name:"Chocolate Lava Cake",
+    description:"Warm chocolate cake with a rich molten centre.",
+    price:199,
+    rating:"4.9",
+    tag:"MUST TRY",
+    image:"https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:23,
+    category:"desserts",
+    name:"Tiramisu",
+    description:"Classic Italian dessert with coffee and mascarpone.",
+    price:229,
+    rating:"4.8",
+    tag:"",
+    image:"https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:24,
+    category:"desserts",
+    name:"New York Cheesecake",
+    description:"Creamy cheesecake with a buttery biscuit base.",
+    price:219,
+    rating:"4.7",
+    tag:"CLASSIC",
+    image:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:25,
+    category:"desserts",
+    name:"Gulab Jamun",
+    description:"Soft milk dumplings served warm with sweet syrup.",
+    price:129,
+    rating:"4.8",
+    tag:"INDIAN",
+    image:"https://images.unsplash.com/photo-1666190094762-9b9b1c4b3e4e?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:26,
+    category:"desserts",
+    name:"Fresh Fruit Bowl",
+    description:"Seasonal fresh fruits served chilled.",
+    price:149,
+    rating:"4.5",
+    tag:"LIGHT",
+    image:"https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:27,
+    category:"drinks",
+    name:"Iced Coffee",
+    description:"Cold coffee blended with milk and ice.",
+    price:149,
+    rating:"4.7",
+    tag:"COOL",
+    image:"https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:28,
+    category:"drinks",
+    name:"Fresh Lemon Mojito",
+    description:"Refreshing lemon drink with mint and sparkling water.",
+    price:139,
+    rating:"4.8",
+    tag:"REFRESHING",
+    image:"https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:29,
+    category:"drinks",
+    name:"Berry Smoothie",
+    description:"Creamy smoothie blended with fresh berries.",
+    price:179,
+    rating:"4.7",
+    tag:"HEALTHY",
+    image:"https://images.unsplash.com/photo-1502741224143-90386d7f8c82?auto=format&fit=crop&w=800&q=80"
+},
+
+{
+    id:30,
+    category:"drinks",
+    name:"Mango Shake",
+    description:"Creamy mango shake made with fresh mangoes.",
+    price:169,
+    rating:"4.8",
+    tag:"FAVOURITE",
+    image:"https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=800&q=80"
+}
+
+];
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentCategory = "all";
+let cart = [];
+
+
+/* =========================
+   DISPLAY MENU
+========================= */
+
+function displayMenu(items){
+
+    const menuGrid = document.getElementById("menuGrid");
+
+    if(items.length === 0){
+
+        menuGrid.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:50px;
+                color:#777;
+            ">
+                No dishes found.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    menuGrid.innerHTML = items.map(item => `
+
+        <div class="food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}"
+                    loading="lazy"
+                >
+
+                ${
+                    item.tag
+                    ? `<div class="food-tag">${item.tag}</div>`
+                    : ""
+                }
+
+                <button
+                    class="heart"
+                    onclick="toggleFavorite(this)"
+                    aria-label="Add to favorites"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="food-info">
+
+                <h3>
+                    ${item.name}
+                </h3>
+
+                <p class="food-description">
+                    ${item.description}
+                </p>
+
+
+                <div class="food-meta">
+
+                    <span class="food-price">
+                        ₹${item.price}
+                    </span>
+
+                    <span class="food-rating">
+                        ★ ${item.rating}
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="add-button"
+                    onclick="addToCart(${item.id})"
+                >
+                    ADD TO ORDER
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+function filterMenu(category,button){
+
+    currentCategory = category;
+
+    document.querySelectorAll(".category")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    applyFilters();
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchMenu(){
+    applyFilters();
+}
+
+
+function applyFilters(){
+
+    const searchValue =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    let filtered = menuItems.filter(item => {
+
+        const categoryMatch =
+            currentCategory === "all" ||
+            item.category === currentCategory;
+
+        const searchMatch =
+            item.name.toLowerCase().includes(searchValue) ||
+            item.description.toLowerCase().includes(searchValue);
+
+        return categoryMatch && searchMatch;
+
+    });
+
+
+    displayMenu(filtered);
+
+}
+
+
+/* =========================
+   FAVORITE
+========================= */
+
+function toggleFavorite(button){
+
+    button.classList.toggle("liked");
+
+    button.innerHTML =
+        button.classList.contains("liked")
+        ? "♥"
+        : "♡";
+
+}
+
+
+/* =========================
+   CART
+========================= */
+
+function addToCart(id){
+
+    const item = menuItems.find(food => food.id === id);
+
+    if(!item) return;
+
+
+    const existing = cart.find(food => food.id === id);
+
+
+    if(existing){
+
+        existing.quantity++;
+
+    }else{
+
+        cart.push({
+            ...item,
+            quantity:1
+        });
+
+    }
+
+
+    updateCart();
+
+    showToast(`${item.name} added to your order`);
+
+}
+
+
+function updateCart(){
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    const cartItems =
+        document.getElementById("cartItems");
+
+    const cartTotal =
+        document.getElementById("cartTotal");
+
+
+    const totalQuantity =
+        cart.reduce(
+            (sum,item) => sum + item.quantity,
+            0
+        );
+
+
+    const totalPrice =
+        cart.reduce(
+            (sum,item) => sum + item.price * item.quantity,
+            0
+        );
+
+
+    cartCount.textContent = totalQuantity;
+
+    cartTotal.textContent =
+        `₹${totalPrice}`;
+
+
+    if(cart.length === 0){
+
+        cartItems.innerHTML = `
+            <div class="empty-cart">
+                Your cart is empty.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    cartItems.innerHTML = cart.map(item => `
+
+        <div class="cart-item">
+
+            <img
+                src="${item.image}"
+                alt="${item.name}"
+            >
+
+            <div>
+
+                <h4>
+                    ${item.name}
+                </h4>
+
+                <p>
+                    ₹${item.price}
+                </p>
+
+
+                <div class="quantity">
+
+                    <button
+                        onclick="changeQuantity(${item.id},-1)"
+                    >
+                        −
+                    </button>
+
+                    <span>
+                        ${item.quantity}
+                    </span>
+
+                    <button
+                        onclick="changeQuantity(${item.id},1)"
+                    >
+                        +
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="remove-item"
+                onclick="removeFromCart(${item.id})"
+            >
+                Remove
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* =========================
+   CHANGE QUANTITY
+========================= */
+
+function changeQuantity(id,change){
+
+    const item =
+        cart.find(food => food.id === id);
+
+    if(!item) return;
+
+
+    item.quantity += change;
+
+
+    if(item.quantity <= 0){
+
+        cart =
+            cart.filter(food => food.id !== id);
+
+    }
+
+
+    updateCart();
+
+}
+
+
+/* =========================
+   REMOVE ITEM
+========================= */
+
+function removeFromCart(id){
+
+    cart =
+        cart.filter(item => item.id !== id);
+
+    updateCart();
+
+}
+
+
+/* =========================
+   OPEN CART
+========================= */
+
+function openCart(){
+
+    document
+        .getElementById("cartDrawer")
+        .classList.add("show");
+
+    document
+        .getElementById("cartOverlay")
+        .classList.add("show");
+
+}
+
+
+/* =========================
+   CLOSE CART
+========================= */
+
+function closeCart(){
+
+    document
+        .getElementById("cartDrawer")
+        .classList.remove("show");
+
+    document
+        .getElementById("cartOverlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+function checkout(){
+
+    if(cart.length === 0){
+
+        showToast("Your cart is empty");
+
+        return;
+    }
+
+
+    showToast(
+        "Checkout demo — your order has been prepared!"
+    );
+
+}
+
+
+/* =========================
+   RESERVATION
+========================= */
+
+function makeReservation(event){
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("guestName").value;
+
+
+    showToast(
+        `Thank you ${name}! Your reservation request has been received.`
+    );
+
+
+    event.target.reset();
+
+}
+
+
+/* =========================
+   SCROLL
+========================= */
+
+function scrollToReservation(){
+
+    document
+        .getElementById("reservation")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
+
+displayMenu(menuItems);
+updateCart();
+
+</script>
+
+</body>
+</html>
+```
