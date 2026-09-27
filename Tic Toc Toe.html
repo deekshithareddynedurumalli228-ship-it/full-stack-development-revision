@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Neon Tic Tac Toe</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    #312e81,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 90% 90%,
+                    #164e63,
+                    transparent 35%
+                ),
+                #080b18;
+
+            color: white;
+            padding: 20px;
+        }
+
+        .game-container {
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 40px;
+            letter-spacing: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #a78bfa,
+                    #22d3ee
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .score-card {
+            flex: 1;
+            padding: 15px;
+            border-radius: 18px;
+
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .score-card h3 {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .score {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .x-score {
+            color: #a78bfa;
+            text-shadow: 0 0 15px #8b5cf6;
+        }
+
+        .o-score {
+            color: #22d3ee;
+            text-shadow: 0 0 15px #06b6d4;
+        }
+
+        .turn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 30px;
+
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+
+            color: #c4b5fd;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+            width: 100%;
+            max-width: 360px;
+            margin: auto;
+        }
+
+        .cell {
+            aspect-ratio: 1;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            color: white;
+            font-size: 60px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .cell:hover:not(:disabled) {
+            transform: translateY(-5px) scale(1.04);
+
+            background: rgba(255, 255, 255, 0.12);
+
+            box-shadow:
+                0 10px 30px
+                rgba(124, 58, 237, 0.25);
+        }
+
+        .cell.x {
+            color: #a78bfa;
+
+            text-shadow:
+                0 0 10px #8b5cf6,
+                0 0 30px #7c3aed;
+
+            animation: pop 0.3s ease;
+        }
+
+        .cell.o {
+            color: #22d3ee;
+
+            text-shadow:
+                0 0 10px #06b6d4,
+                0 0 30px #0891b2;
+
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0);
+            }
+
+            70% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .winner {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(124, 58, 237, 0.35),
+                    rgba(6, 182, 212, 0.35)
+                );
+
+            animation:
+                winnerGlow
+                0.8s infinite alternate;
+        }
+
+        @keyframes winnerGlow {
+            from {
+                box-shadow:
+                    0 0 10px
+                    rgba(167, 139, 250, 0.4);
+            }
+
+            to {
+                box-shadow:
+                    0 0 35px
+                    rgba(34, 211, 238, 0.8);
+            }
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        button.action {
+            border: none;
+            padding: 13px 25px;
+            border-radius: 30px;
+
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .new-game {
+            background:
+                linear-gradient(
+                    90deg,
+                    #7c3aed,
+                    #0891b2
+                );
+
+            box-shadow:
+                0 8px 25px
+                rgba(124, 58, 237, 0.3);
+        }
+
+        .reset {
+            background: rgba(255, 255, 255, 0.08);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.15) !important;
+        }
+
+        button.action:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+            min-height: 22px;
+            margin-top: 18px;
+
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 20px;
+
+            color: #64748b;
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .game-container {
+                padding: 22px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .cell {
+                font-size: 45px;
+                border-radius: 15px;
+            }
+
+            .score-board {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="game-container">
+
+        <div class="game-icon">
+            🎮
+        </div>
+
+        <h1>TIC TAC TOE</h1>
+
+        <p class="subtitle">
+            Think Fast • Make Your Move • Win
+        </p>
+
+        <div class="score-board">
+
+            <div class="score-card">
+                <h3>PLAYER X</h3>
+
+                <div
+                    class="score x-score"
+                    id="scoreX">
+                    0
+                </div>
+            </div>
+
+            <div class="score-card">
+                <h3>PLAYER O</h3>
+
+                <div
+                    class="score o-score"
+                    id="scoreO">
+                    0
+                </div>
+            </div>
+
+        </div>
+
+        <div
+            class="turn"
+            id="turn">
+            Player X's Turn
+        </div>
+
+        <div
+            class="board"
+            id="board">
+
+            <button class="cell" data-index="0" type="button"></button>
+            <button class="cell" data-index="1" type="button"></button>
+            <button class="cell" data-index="2" type="button"></button>
+
+            <button class="cell" data-index="3" type="button"></button>
+            <button class="cell" data-index="4" type="button"></button>
+            <button class="cell" data-index="5" type="button"></button>
+
+            <button class="cell" data-index="6" type="button"></button>
+            <button class="cell" data-index="7" type="button"></button>
+            <button class="cell" data-index="8" type="button"></button>
+
+        </div>
+
+        <div class="buttons">
+
+            <button
+                class="action new-game"
+                id="newGame"
+                type="button">
+                🔄 New Game
+            </button>
+
+            <button
+                class="action reset"
+                id="resetScore"
+                type="button">
+                🏆 Reset Score
+            </button>
+
+        </div>
+
+        <div
+            class="message"
+            id="message">
+            First player to connect 3 wins! ✨
+        </div>
+
+        <div class="footer">
+            HTML • CSS • JAVASCRIPT
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =================================
+           GAME VARIABLES
+        ================================= */
+
+        const cells = document.querySelectorAll(".cell");
+
+        const turn = document.getElementById("turn");
+
+        const message = document.getElementById("message");
+
+        const newGame = document.getElementById("newGame");
+
+        const resetScore = document.getElementById("resetScore");
+
+        const scoreX = document.getElementById("scoreX");
+
+        const scoreO = document.getElementById("scoreO");
+
+
+        /* =================================
+           GAME STATE
+        ================================= */
+
+        // FIXED:
+        // Tic Tac Toe has exactly 9 positions.
+        let board = [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        ];
+
+        let currentPlayer = "X";
+
+        let gameActive = true;
+
+        let playerXScore = 0;
+
+        let playerOScore = 0;
+
+
+        /* =================================
+           WINNING PATTERNS
+        ================================= */
+
+        const winningPatterns = [
+
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+
+            [0, 4, 8],
+            [2, 4, 6]
+
+        ];
+
+
+        /* =================================
+           CELL CLICK
+        ================================= */
+
+        cells.forEach(cell => {
+
+            cell.addEventListener("click", () => {
+
+                const index = Number(cell.dataset.index);
+
+                // Do nothing if cell is already used
+                // or game is finished
+                if (
+                    board[index] !== "" ||
+                    !gameActive
+                ) {
+                    return;
+                }
+
+
+                // Store player's move
+                board[index] = currentPlayer;
+
+
+                // Display X or O
+                cell.textContent =
+                    currentPlayer === "X"
+                        ? "✕"
+                        : "◯";
+
+
+                // Add X/O CSS class
+                cell.classList.add(
+                    currentPlayer.toLowerCase()
+                );
+
+
+                // Disable clicked cell
+                cell.disabled = true;
+
+
+                // Check winner or draw
+                checkGame();
+
+            });
+
+        });
+
+
+        /* =================================
+           CHECK GAME
+        ================================= */
+
+        function checkGame() {
+
+            let winner = null;
+
+            let winningCells = [];
+
+
+            for (const pattern of winningPatterns) {
+
+                const [a, b, c] = pattern;
+
+
+                if (
+                    board[a] !== "" &&
+                    board[a] === board[b] &&
+                    board[a] === board[c]
+                ) {
+
+                    winner = board[a];
+
+                    winningCells = pattern;
+
+                    break;
+                }
+            }
+
+
+            /* =========================
+               WINNER
+            ========================== */
+
+            if (winner) {
+
+                gameActive = false;
+
+
+                // Highlight winning cells
+                winningCells.forEach(index => {
+
+                    cells[index].classList.add("winner");
+
+                });
+
+
+                // Update score
+                if (winner === "X") {
+
+                    playerXScore++;
+
+                    scoreX.textContent = playerXScore;
+
+                } else {
+
+                    playerOScore++;
+
+                    scoreO.textContent = playerOScore;
+
+                }
+
+
+                turn.textContent =
+                    `🎉 Player ${winner} Wins!`;
+
+                message.textContent =
+                    `Amazing! Player ${winner} completed the line! 🏆`;
+
+                return;
+            }
+
+
+            /* =========================
+               DRAW
+            ========================== */
+
+            // FIXED:
+            // Since board now has exactly 9 positions,
+            // this correctly detects a draw.
+            if (!board.includes("")) {
+
+                gameActive = false;
+
+                turn.textContent =
+                    "🤝 It's a Draw!";
+
+                message.textContent =
+                    "Great game! Nobody gave up! 🔥";
+
+                return;
+            }
+
+
+            /* =========================
+               CHANGE PLAYER
+            ========================== */
+
+            currentPlayer =
+                currentPlayer === "X"
+                    ? "O"
+                    : "X";
+
+
+            turn.textContent =
+                `Player ${currentPlayer}'s Turn`;
+
+            message.textContent =
+                `${currentPlayer}, it's your move! 🎯`;
+
+        }
+
+
+        /* =================================
+           NEW GAME
+        ================================= */
+
+        newGame.addEventListener(
+            "click",
+            restartGame
+        );
+
+
+        function restartGame() {
+
+            // Reset board to exactly 9 positions
+            board = [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ];
+
+
+            currentPlayer = "X";
+
+            gameActive = true;
+
+
+            turn.textContent =
+                "Player X's Turn";
+
+            message.textContent =
+                "First player to connect 3 wins! ✨";
+
+
+            // Clear all cells
+            cells.forEach(cell => {
+
+                cell.textContent = "";
+
+                cell.disabled = false;
+
+                cell.classList.remove(
+                    "x",
+                    "o",
+                    "winner"
+                );
+
+            });
+
+        }
+
+
+        /* =================================
+           RESET SCORE
+        ================================= */
+
+        resetScore.addEventListener(
+            "click",
+            () => {
+
+                playerXScore = 0;
+
+                playerOScore = 0;
+
+                scoreX.textContent = "0";
+
+                scoreO.textContent = "0";
+
+                restartGame();
+
+                message.textContent =
+                    "Scores reset! New battle begins ⚡";
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+
+
+           
